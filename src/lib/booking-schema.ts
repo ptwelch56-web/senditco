@@ -8,7 +8,8 @@ export const packageIdSchema = z.enum([
   "custom-event",
 ]);
 
-export const bookingSchema = z.object({
+/** Base fields only — use this for step schemas (.pick). Do not add .superRefine here. */
+export const bookingFieldsSchema = z.object({
   packageId: packageIdSchema,
   preferredDate: z.string().min(1, "Pick a preferred date"),
   preferredTime: z.string().min(1, "Pick a time window"),
@@ -37,7 +38,21 @@ export const bookingSchema = z.object({
   acknowledgments: z.array(z.boolean()).length(3),
   signatureDataUrl: z.string().min(50, "Sign the waiver"),
   signedAt: z.string(),
-}).superRefine((data, ctx) => {
+});
+
+export const detailsStepSchema = bookingFieldsSchema.pick({
+  preferredDate: true,
+  preferredTime: true,
+  locationAddress: true,
+  locationCity: true,
+  contactName: true,
+  contactPhone: true,
+  contactEmail: true,
+  riderCount: true,
+  riderDetails: true,
+});
+
+export const bookingSchema = bookingFieldsSchema.superRefine((data, ctx) => {
   if (data.isMinor && (!data.guardianName || data.guardianName.length < 2)) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,

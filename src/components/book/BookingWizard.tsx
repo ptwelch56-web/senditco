@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { packages, site, type PackageId } from "@/lib/site";
 import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
-import { bookingSchema, type BookingPayload } from "@/lib/booking-schema";
+import { bookingSchema, detailsStepSchema, type BookingPayload } from "@/lib/booking-schema";
 import { SignatureField } from "./SignatureField";
 
 type Step = "package" | "details" | "waiver" | "review";
@@ -98,18 +98,7 @@ export function BookingWizard() {
     }
 
     if (step === "details") {
-      const fields = bookingSchema.pick({
-        preferredDate: true,
-        preferredTime: true,
-        locationAddress: true,
-        locationCity: true,
-        contactName: true,
-        contactPhone: true,
-        contactEmail: true,
-        riderCount: true,
-        riderDetails: true,
-      });
-      const result = fields.safeParse(partial);
+      const result = detailsStepSchema.safeParse(partial);
       if (!result.success) {
         const map: Record<string, string> = {};
         for (const issue of result.error.issues) {
@@ -160,10 +149,17 @@ export function BookingWizard() {
   };
 
   const goNext = () => {
-    if (!validateStep()) return;
-    const order: Step[] = ["package", "details", "waiver", "review"];
-    const i = order.indexOf(step);
-    if (i < order.length - 1) setStep(order[i + 1]);
+    try {
+      if (!validateStep()) return;
+      const order: Step[] = ["package", "details", "waiver", "review"];
+      const i = order.indexOf(step);
+      if (i < order.length - 1) setStep(order[i + 1]);
+    } catch (error) {
+      console.error("[booking] validateStep failed", error);
+      setErrors({
+        form: "Something went wrong validating this step. Please try again or call us.",
+      });
+    }
   };
 
   const goBack = () => {
