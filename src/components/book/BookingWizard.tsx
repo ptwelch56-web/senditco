@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { packages, site, type PackageId } from "@/lib/site";
-import { waiverAcknowledgments, waiverSections } from "@/lib/waiver-text";
+import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
 import { bookingSchema, type BookingPayload } from "@/lib/booking-schema";
 import { SignatureField } from "./SignatureField";
 
@@ -392,10 +392,11 @@ export function BookingWizard() {
         <section className="space-y-5">
           <h2 className="text-lg font-semibold text-white">Liability waiver</h2>
           <p className="text-sm text-zinc-400">
-            Please read carefully. Have a parent or guardian complete this section
-            for riders under 18.
+            Please read carefully. Effective {waiverEffectiveDate}. Have a parent or
+            guardian complete this section for riders under 18. This is not a
+            substitute for advice from a licensed attorney.
           </p>
-          <div className="max-h-64 space-y-4 overflow-y-auto rounded-xl border border-white/10 bg-black/40 p-4 text-sm text-zinc-300">
+          <div className="max-h-72 space-y-4 overflow-y-auto rounded-xl border border-white/10 bg-black/40 p-4 text-sm text-zinc-300 sm:max-h-80">
             {waiverSections.map((section) => (
               <div key={section.title}>
                 <p className="font-semibold text-white">{section.title}</p>

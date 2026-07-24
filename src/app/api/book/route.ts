@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { randomUUID } from "crypto";
 import { bookingSchema } from "@/lib/booking-schema";
 import { packages, site } from "@/lib/site";
-import { waiverAcknowledgments, waiverSections } from "@/lib/waiver-text";
+import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -109,7 +109,7 @@ function buildEmailHtml(
       <p><strong>Equipment:</strong> Bikes ${data.needsBike ? "yes" : "no"} · Helmets ${data.needsHelmet ? "yes" : "no"}</p>
       ${data.notes ? `<p><strong>Notes:</strong> ${escapeHtml(data.notes)}</p>` : ""}
       <hr/>
-      <h2 style="font-size:16px;">Waiver</h2>
+      <h2 style="font-size:16px;">Waiver (effective ${escapeHtml(waiverEffectiveDate)})</h2>
       <p><strong>Participant:</strong> ${escapeHtml(data.participantName)} (age ${data.participantAge})</p>
       ${data.guardianName ? `<p><strong>Guardian:</strong> ${escapeHtml(data.guardianName)}</p>` : ""}
       <p><strong>Signed at:</strong> ${escapeHtml(data.signedAt)}</p>
