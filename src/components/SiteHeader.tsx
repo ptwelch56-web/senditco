@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HashLink } from "@/components/HashLink";
 import { MobileMenu } from "@/components/MobileMenu";
 import { sectionNavLinks } from "@/lib/nav-links";
 import { site } from "@/lib/site";
@@ -20,13 +21,13 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-6 md:flex" aria-label="Main">
           {sectionNavLinks.map((link) => (
-            <Link
+            <HashLink
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-zinc-300 transition hover:text-white"
             >
               {link.label}
-            </Link>
+            </HashLink>
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">

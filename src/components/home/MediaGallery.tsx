@@ -3,7 +3,7 @@ import { media } from "@/lib/site";
 
 export function MediaGallery() {
   return (
-    <section id="gallery" className="border-b border-white/10 bg-black/40">
+    <section id="gallery" className="scroll-mt-24 border-b border-white/10 bg-black/40">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="font-display text-3xl text-white sm:text-4xl">
           See it in action

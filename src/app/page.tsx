@@ -95,10 +95,41 @@ export default function HomePage() {
 
         <MediaGallery />
 
-        <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section id="how-it-works" className="scroll-mt-24 mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <h2 className="font-display text-3xl text-white sm:text-4xl">
-            Perfect for
+            How it works
           </h2>
+          <ol className="mt-8 grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                step: "1",
+                title: "Book",
+                body: "Pick a package, tell us your date and address, and sign the waiver online.",
+              },
+              {
+                step: "2",
+                title: "We roll up",
+                body: "We bring the portable ramp, air bag, and gear to your driveway or event.",
+              },
+              {
+                step: "3",
+                title: "Send it",
+                body: "Coached jumps at your pace—first-timers to riders leveling up tricks.",
+              },
+            ].map((item) => (
+              <li
+                key={item.step}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5"
+              >
+                <p className="text-sm font-bold text-red-500">Step {item.step}</p>
+                <p className="mt-2 font-semibold text-white">{item.title}</p>
+                <p className="mt-2 text-sm text-zinc-400">{item.body}</p>
+              </li>
+            ))}
+          </ol>
+          <h3 className="font-display mt-14 text-2xl text-white sm:text-3xl">
+            Perfect for
+          </h3>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {perfectFor.map((item) => (
               <li
@@ -112,7 +143,7 @@ export default function HomePage() {
           </ul>
         </section>
 
-        <section id="pricing" className="border-y border-white/10 bg-white/[0.02]">
+        <section id="pricing" className="scroll-mt-24 border-y border-white/10 bg-white/[0.02]">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="font-display text-3xl text-white sm:text-4xl">Pricing</h2>
@@ -144,7 +175,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="service-area" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section id="service-area" className="scroll-mt-24 mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-red-950/30 to-blue-950/20 p-8 sm:p-12">
             <h2 className="font-display text-3xl text-white">Ready to get air?</h2>
             <p className="mt-4 max-w-2xl text-zinc-300">

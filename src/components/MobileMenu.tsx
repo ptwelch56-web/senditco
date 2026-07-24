@@ -3,8 +3,37 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { HashLink } from "@/components/HashLink";
 import { mobileNavLinks } from "@/lib/nav-links";
 import { site } from "@/lib/site";
+
+function NavItem({
+  href,
+  label,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  onNavigate: () => void;
+}) {
+  const isHash = href.includes("#");
+  const className =
+    "block rounded-xl px-4 py-3.5 text-base font-medium text-zinc-100 active:bg-white/10";
+
+  if (isHash) {
+    return (
+      <HashLink href={href} className={className} onClick={onNavigate}>
+        {label}
+      </HashLink>
+    );
+  }
+
+  return (
+    <Link href={href} className={className} onClick={onNavigate}>
+      {label}
+    </Link>
+  );
+}
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -68,13 +97,11 @@ export function MobileMenu() {
             <ul className="space-y-1">
               {mobileNavLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <NavItem
                     href={link.href}
-                    className="block rounded-xl px-4 py-3.5 text-base font-medium text-zinc-100 active:bg-white/10"
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
+                    label={link.label}
+                    onNavigate={() => setOpen(false)}
+                  />
                 </li>
               ))}
             </ul>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HashLink } from "@/components/HashLink";
 import { site } from "@/lib/site";
 
 const tabs = [
@@ -112,6 +113,15 @@ export function MobileActionBar() {
 
           return (
             <li key={tab.href}>
+              {tab.href === "/#gallery" ? (
+                <HashLink
+                  href={tab.href}
+                  className={`flex min-h-[3.25rem] flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-semibold uppercase tracking-wide active:bg-white/5 text-zinc-300`}
+                >
+                  <IconGallery active={false} />
+                  {tab.label}
+                </HashLink>
+              ) : (
               <Link
                 href={tab.href}
                 className={`flex min-h-[3.25rem] flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-semibold uppercase tracking-wide active:bg-white/5 ${
@@ -124,13 +134,12 @@ export function MobileActionBar() {
               >
                 {tab.href === "/" ? (
                   <IconHome active={active} />
-                ) : tab.href === "/#gallery" ? (
-                  <IconGallery active={false} />
                 ) : (
                   <IconBook active={active} />
                 )}
                 {tab.label}
               </Link>
+              )}
             </li>
           );
         })}

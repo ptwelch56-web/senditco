@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Oswald } from "next/font/google";
+import { HashScrollOnLoad } from "@/components/HashScrollOnLoad";
 import { MobileActionBar } from "@/components/MobileActionBar";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -50,6 +51,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col overflow-x-hidden bg-[#070708] pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] text-zinc-100 md:pb-0">
+        <HashScrollOnLoad />
         {children}
         <MobileActionBar />
       </body>
