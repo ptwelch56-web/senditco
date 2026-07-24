@@ -16,7 +16,13 @@ export const bookingSchema = z.object({
   locationCity: z.string().min(2, "Enter city"),
   locationNotes: z.string().optional(),
   contactName: z.string().min(2, "Enter your name"),
-  contactPhone: z.string().min(10, "Enter a valid phone number"),
+  contactPhone: z
+    .string()
+    .min(1, "Enter a phone number")
+    .refine(
+      (value) => value.replace(/\D/g, "").length >= 10,
+      "Enter at least 10 digits",
+    ),
   contactEmail: z.string().email("Enter a valid email"),
   riderCount: z.coerce.number().int().min(1).max(20),
   riderDetails: z.string().min(3, "List rider names and ages"),
@@ -29,7 +35,7 @@ export const bookingSchema = z.object({
   isMinor: z.boolean(),
   guardianName: z.string().optional(),
   acknowledgments: z.array(z.boolean()).length(3),
-  signatureDataUrl: z.string().min(100, "Sign the waiver"),
+  signatureDataUrl: z.string().min(50, "Sign the waiver"),
   signedAt: z.string(),
 }).superRefine((data, ctx) => {
   if (data.isMinor && (!data.guardianName || data.guardianName.length < 2)) {

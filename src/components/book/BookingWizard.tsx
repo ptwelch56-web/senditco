@@ -70,6 +70,16 @@ export function BookingWizard() {
     });
   };
 
+  const scrollToErrors = (map: Record<string, string>) => {
+    const firstKey = Object.keys(map)[0];
+    if (!firstKey) return;
+    requestAnimationFrame(() => {
+      document
+        .querySelector(`[data-field="${firstKey}"]`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  };
+
   const validateStep = (): boolean => {
     const partial: Partial<BookingPayload> = {
       ...form,
@@ -78,9 +88,12 @@ export function BookingWizard() {
 
     if (step === "package") {
       if (!form.packageId) {
-        setErrors({ packageId: "Choose a package" });
+        const map = { packageId: "Choose a package" };
+        setErrors(map);
+        scrollToErrors(map);
         return false;
       }
+      setErrors({});
       return true;
     }
 
@@ -103,47 +116,46 @@ export function BookingWizard() {
           map[issue.path.join(".")] = issue.message;
         }
         setErrors(map);
+        scrollToErrors(map);
         return false;
       }
+      setErrors({});
       return true;
     }
 
     if (step === "waiver") {
-      const fields = bookingSchema.pick({
-        participantName: true,
-        participantAge: true,
-        isMinor: true,
-        guardianName: true,
-        acknowledgments: true,
-        signatureDataUrl: true,
-      });
-      const payload = {
-        ...partial,
-        acknowledgments: form.acknowledgments,
-        signedAt: new Date().toISOString(),
-      };
-      const result = fields.safeParse(payload);
-      if (!result.success) {
-        const map: Record<string, string> = {};
-        for (const issue of result.error.issues) {
-          map[issue.path.join(".")] = issue.message;
-        }
-        if (!form.acknowledgments.every(Boolean)) {
-          map.acknowledgments = "Check all boxes to continue";
-        }
-        if (form.isMinor && !form.guardianName?.trim()) {
-          map.guardianName = "Parent/guardian name required";
-        }
-        if (!form.signatureDataUrl) {
-          map.signatureDataUrl = "Sign the waiver";
-        }
+      const map: Record<string, string> = {};
+      const age = Number(form.participantAge);
+
+      if (!form.participantName?.trim() || form.participantName.trim().length < 2) {
+        map.participantName = "Enter participant legal name";
+      }
+      if (!Number.isFinite(age) || age < 8 || age > 99) {
+        map.participantAge = "Enter participant age (8+)";
+      }
+      if (age < 18 && !form.guardianName?.trim()) {
+        map.guardianName = "Parent/guardian name required for minors";
+      }
+      if (!form.acknowledgments.every(Boolean)) {
+        map.acknowledgments = "Check all three boxes to continue";
+      }
+      if (!form.signatureDataUrl || form.signatureDataUrl.length < 50) {
+        map.signatureDataUrl = "Sign above and tap Save signature";
+      }
+
+      if (Object.keys(map).length > 0) {
         setErrors(map);
+        scrollToErrors(map);
         return false;
       }
+
       update("signedAt", new Date().toISOString());
+      update("isMinor", age < 18);
+      setErrors({});
       return true;
     }
 
+    setErrors({});
     return true;
   };
 
@@ -230,6 +242,20 @@ export function BookingWizard() {
         ))}
       </ol>
 
+      {Object.keys(errors).length > 0 ? (
+        <div
+          className="mb-6 rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-200"
+          role="alert"
+        >
+          <p className="font-semibold">Please fix the following to continue:</p>
+          <ul className="mt-2 list-inside list-disc space-y-1 text-red-300/90">
+            {Object.entries(errors).map(([key, message]) => (
+              <li key={key}>{message}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
       {step === "package" && (
         <section className="space-y-4">
           <h2 className="text-lg font-semibold text-white">Select a package</h2>
@@ -263,7 +289,7 @@ export function BookingWizard() {
         <section className="space-y-5">
           <h2 className="text-lg font-semibold text-white">Session details</h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Preferred date" error={errors.preferredDate}>
+            <Field label="Preferred date" error={errors.preferredDate} fieldKey="preferredDate">
               <input
                 type="date"
                 className={inputClass}
@@ -271,7 +297,7 @@ export function BookingWizard() {
                 onChange={(e) => update("preferredDate", e.target.value)}
               />
             </Field>
-            <Field label="Preferred time" error={errors.preferredTime}>
+            <Field label="Preferred time" error={errors.preferredTime} fieldKey="preferredTime">
               <select
                 className={inputClass}
                 value={form.preferredTime}
@@ -285,7 +311,7 @@ export function BookingWizard() {
               </select>
             </Field>
           </div>
-          <Field label="Street address (where we set up)" error={errors.locationAddress}>
+          <Field label="Street address (where we set up)" error={errors.locationAddress} fieldKey="locationAddress">
             <input
               className={inputClass}
               placeholder="123 Main St"
@@ -293,7 +319,7 @@ export function BookingWizard() {
               onChange={(e) => update("locationAddress", e.target.value)}
             />
           </Field>
-          <Field label="City" error={errors.locationCity}>
+          <Field label="City" error={errors.locationCity} fieldKey="locationCity">
             <input
               className={inputClass}
               placeholder="Mebane"
@@ -311,14 +337,14 @@ export function BookingWizard() {
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Your name" error={errors.contactName}>
+            <Field label="Your name" error={errors.contactName} fieldKey="contactName">
               <input
                 className={inputClass}
                 value={form.contactName}
                 onChange={(e) => update("contactName", e.target.value)}
               />
             </Field>
-            <Field label="Phone" error={errors.contactPhone}>
+            <Field label="Phone" error={errors.contactPhone} fieldKey="contactPhone">
               <input
                 type="tel"
                 className={inputClass}
@@ -327,7 +353,7 @@ export function BookingWizard() {
               />
             </Field>
           </div>
-          <Field label="Email" error={errors.contactEmail}>
+          <Field label="Email" error={errors.contactEmail} fieldKey="contactEmail">
             <input
               type="email"
               className={inputClass}
@@ -336,7 +362,7 @@ export function BookingWizard() {
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Number of riders" error={errors.riderCount}>
+            <Field label="Number of riders" error={errors.riderCount} fieldKey="riderCount">
               <input
                 type="number"
                 min={1}
@@ -350,6 +376,7 @@ export function BookingWizard() {
           <Field
             label="Rider names & ages"
             error={errors.riderDetails}
+            fieldKey="riderDetails"
             hint="One per line, e.g. Alex, 12"
           >
             <textarea
@@ -405,14 +432,14 @@ export function BookingWizard() {
             ))}
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Participant legal name" error={errors.participantName}>
+            <Field label="Participant legal name" error={errors.participantName} fieldKey="participantName">
               <input
                 className={inputClass}
                 value={form.participantName}
                 onChange={(e) => update("participantName", e.target.value)}
               />
             </Field>
-            <Field label="Participant age" error={errors.participantAge}>
+            <Field label="Participant age" error={errors.participantAge} fieldKey="participantAge">
               <input
                 type="number"
                 min={8}
@@ -427,7 +454,7 @@ export function BookingWizard() {
             </Field>
           </div>
           {(form.participantAge ?? 18) < 18 ? (
-            <Field label="Parent / guardian full name" error={errors.guardianName}>
+            <Field label="Parent / guardian full name" error={errors.guardianName} fieldKey="guardianName">
               <input
                 className={inputClass}
                 value={form.guardianName}
@@ -435,7 +462,7 @@ export function BookingWizard() {
               />
             </Field>
           ) : null}
-          <div className="space-y-2">
+          <div className="space-y-2" data-field="acknowledgments">
             {waiverAcknowledgments.map((text, i) => (
               <label
                 key={text}
@@ -466,7 +493,7 @@ export function BookingWizard() {
             />
             Opt out of photo/video for marketing
           </label>
-          <Field label="Signature">
+          <Field label="Signature" fieldKey="signatureDataUrl">
             <SignatureField
               onChange={(url) => update("signatureDataUrl", url)}
               error={errors.signatureDataUrl}
@@ -505,7 +532,7 @@ export function BookingWizard() {
         </section>
       )}
 
-      <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 pb-2 md:pb-0">
+      <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] z-40 -mx-4 mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 bg-[#070708]/95 px-4 py-4 backdrop-blur-md md:static md:mx-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
         <button
           type="button"
           onClick={goBack}
@@ -544,15 +571,17 @@ function Field({
   label,
   hint,
   error,
+  fieldKey,
   children,
 }: {
   label: string;
   hint?: string;
   error?: string;
+  fieldKey?: string;
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
+    <label className="block" data-field={fieldKey}>
       <span className="text-sm font-medium text-zinc-300">{label}</span>
       {hint ? <span className="ml-2 text-xs text-zinc-500">{hint}</span> : null}
       <div className="mt-1.5">{children}</div>

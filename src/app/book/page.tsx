@@ -11,7 +11,7 @@ export default function BookPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-[70vh]">
+      <main className="min-h-[70vh] pb-8 md:pb-0">
         <BookingWizard />
       </main>
       <SiteFooter />
