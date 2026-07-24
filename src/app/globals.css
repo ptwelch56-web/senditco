@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070708;
+  --foreground: #f4f4f5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-oswald);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.font-display {
+  font-family: var(--font-oswald), Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
