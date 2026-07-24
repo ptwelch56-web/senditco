@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -79,15 +78,6 @@ export default function HomePage() {
                     ))}
                   </ul>
                 </div>
-              </div>
-              <div className="pointer-events-none absolute -bottom-4 -left-4 hidden w-28 overflow-hidden rounded-xl border border-white/20 shadow-xl sm:block lg:w-36">
-                <Image
-                  src={media.photos[2].src}
-                  alt=""
-                  width={144}
-                  height={192}
-                  className="h-auto w-full object-cover"
-                />
               </div>
             </div>
           </div>
