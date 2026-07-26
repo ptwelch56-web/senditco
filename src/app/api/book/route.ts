@@ -4,6 +4,7 @@ import { randomUUID } from "crypto";
 import { bookingSchema } from "@/lib/booking-schema";
 import { packages, site } from "@/lib/site";
 import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
+import { resendErrorMessage } from "@/lib/resend-errors";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
     attachments: [
       {
         filename: `${bookingId}-signature.png`,
-        content: signatureBase64,
+        content: Buffer.from(signatureBase64, "base64"),
       },
     ],
   });
@@ -64,7 +65,7 @@ export async function POST(request: Request) {
   if (error) {
     console.error("[book] Resend error", error);
     return NextResponse.json(
-      { ok: false, error: "Could not send booking email. Try calling or texting us." },
+      { ok: false, error: resendErrorMessage(error, { fromEmail, notifyEmail }) },
       { status: 502 },
     );
   }

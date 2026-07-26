@@ -18,12 +18,25 @@ export type PackageId =
   | "two-riders"
   | "small-group"
   | "birthday"
-  | "custom-event";
+  | "custom-event"
+  | "event-spot";
+
+/** On-the-fly event / QR check-in — not shown on advance booking */
+export const spotSession = {
+  id: "event-spot" as const,
+  title: "On-spot ride",
+  price: "$30",
+  priceAmount: 30,
+  duration: "On-site",
+  riders: "Riding with instructions and guidance as needed",
+};
 
 export const packages: {
   id: PackageId;
   title: string;
   price: string;
+  /** USD amount for Venmo / Cash App links; null = custom quote */
+  priceAmount: number | null;
   duration: string;
   riders: string;
   highlight?: boolean;
@@ -32,6 +45,7 @@ export const packages: {
     id: "private",
     title: "Private lesson",
     price: "$99",
+    priceAmount: 99,
     duration: "60 minutes",
     riders: "1 rider",
   },
@@ -39,6 +53,7 @@ export const packages: {
     id: "two-riders",
     title: "Two riders",
     price: "$149",
+    priceAmount: 149,
     duration: "60 minutes",
     riders: "2 riders",
   },
@@ -46,6 +61,7 @@ export const packages: {
     id: "small-group",
     title: "Small group",
     price: "$199",
+    priceAmount: 199,
     duration: "60 minutes",
     riders: "3–5 riders",
     highlight: true,
@@ -54,6 +70,7 @@ export const packages: {
     id: "birthday",
     title: "Birthday party",
     price: "$449",
+    priceAmount: 449,
     duration: "2 hours",
     riders: "Up to 8 riders",
   },
@@ -61,8 +78,17 @@ export const packages: {
     id: "custom-event",
     title: "Events & groups",
     price: "Custom quote",
+    priceAmount: null,
     duration: "Flexible",
     riders: "Corporate, school, church, festivals & more",
+  },
+  {
+    id: spotSession.id,
+    title: spotSession.title,
+    price: spotSession.price,
+    priceAmount: spotSession.priceAmount,
+    duration: spotSession.duration,
+    riders: spotSession.riders,
   },
 ];
 

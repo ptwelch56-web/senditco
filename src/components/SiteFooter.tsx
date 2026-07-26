@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { FooterCheckIn } from "@/components/home/FooterCheckIn";
+import { site, spotSession } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -18,6 +19,21 @@ export function SiteFooter() {
             <li>
               <Link href="/book" className="text-zinc-300 hover:text-white">
                 Request a session
+              </Link>
+            </li>
+            <li>
+              <Link href="/sign-pay" className="text-zinc-300 hover:text-white">
+                Sign & pay ({spotSession.price} at events)
+              </Link>
+            </li>
+            <li>
+              <Link href="/#event-signup" className="text-zinc-300 hover:text-white">
+                Event QR — scan to check in
+              </Link>
+            </li>
+            <li>
+              <Link href="/event" className="text-zinc-300 hover:text-white">
+                Print event QR poster
               </Link>
             </li>
             <li>
@@ -49,6 +65,7 @@ export function SiteFooter() {
           </a>
         </div>
       </div>
+      <FooterCheckIn />
       <div className="border-t border-white/5 py-4 text-center text-xs text-zinc-600">
         © {new Date().getFullYear()} {site.name}. Ride safe. Send it responsibly.
       </div>

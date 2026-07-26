@@ -28,6 +28,19 @@ BOOKING_FROM_EMAIL=Sendit <bookings@your-verified-domain.com>
 
 Without `RESEND_API_KEY`, the booking form will show an error after submit.
 
+## On-site waiver & Venmo / Cash App
+
+Page: `/sign-pay` — parents sign the waiver at the session, then pay via deep links.
+
+In Vercel (or `.env.local`), set:
+
+```env
+NEXT_PUBLIC_VENMO_HANDLE=YourVenmoUsername
+NEXT_PUBLIC_CASHAPP_CASHTAG=YourCashtag
+```
+
+No `@` or `$` needed. Payments go directly to your Venmo/Cash App apps; the site does not process cards.
+
 ## Deploy (Vercel)
 
 1. Push this folder to GitHub.

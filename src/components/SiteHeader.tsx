@@ -31,6 +31,12 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Link
+            href="/sign-pay"
+            className="hidden rounded-full border border-emerald-500/40 px-3 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-950/40 lg:inline-flex"
+          >
+            Sign & pay
+          </Link>
           <a
             href={site.phoneHref}
             className="hidden text-sm font-medium text-zinc-300 hover:text-white lg:inline"

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { packages, site, type PackageId } from "@/lib/site";
+import { packages, site } from "@/lib/site";
 import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
 import { bookingSchema, detailsStepSchema, type BookingPayload } from "@/lib/booking-schema";
 import { SignatureField } from "./SignatureField";
@@ -256,11 +256,11 @@ export function BookingWizard() {
         <section className="space-y-4">
           <h2 className="text-lg font-semibold text-white">Select a package</h2>
           <div className="grid gap-3 sm:grid-cols-2">
-            {packages.map((pkg) => (
+            {packages.filter((pkg) => pkg.id !== "event-spot").map((pkg) => (
               <button
                 key={pkg.id}
                 type="button"
-                onClick={() => update("packageId", pkg.id as PackageId)}
+                onClick={() => update("packageId", pkg.id as BookingPayload["packageId"])}
                 className={`rounded-2xl border p-4 text-left transition ${
                   form.packageId === pkg.id
                     ? "border-red-500 bg-red-950/40 ring-2 ring-red-500/50"

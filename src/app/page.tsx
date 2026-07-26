@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { EventSignupSection } from "@/components/home/EventSignupSection";
 import { MediaGallery } from "@/components/home/MediaGallery";
 import {
   eventTypes,
@@ -9,6 +10,7 @@ import {
   packages,
   perfectFor,
   site,
+  spotSession,
 } from "@/lib/site";
 
 export default function HomePage() {
@@ -49,6 +51,12 @@ export default function HomePage() {
                   Call {site.phone}
                 </a>
               </div>
+              <p className="mt-4 text-sm text-zinc-500">
+                At an event now?{" "}
+                <Link href="/sign-pay" className="text-amber-400 hover:text-amber-300">
+                  Sign waiver & pay — $30
+                </Link>
+              </p>
               <p className="mt-6 text-sm text-zinc-500">
                 Based in {site.location} · {site.serviceArea}
               </p>
@@ -142,7 +150,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {packages.map((pkg) => (
+              {packages.filter((pkg) => pkg.id !== "event-spot").map((pkg) => (
                 <article
                   key={pkg.id}
                   className={`rounded-2xl border p-6 ${
@@ -160,10 +168,15 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-center text-sm text-zinc-500">
-              {eventTypes.join(" · ")} — contact us for a custom quote.
+              {eventTypes.join(" · ")} — on-site event rides {spotSession.price}.{" "}
+              <Link href="#event-signup" className="text-amber-400 hover:text-amber-300">
+                Scan QR to sign & pay
+              </Link>
             </p>
           </div>
         </section>
+
+        <EventSignupSection />
 
         <section id="service-area" className="scroll-mt-24 mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-red-950/30 to-blue-950/20 p-8 sm:p-12">
