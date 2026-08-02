@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { currentStarJumper } from "@/lib/site";
 
 export function StarJumpersSection() {
@@ -29,19 +30,7 @@ export function StarJumpersSection() {
         </div>
 
         <article className="mt-10 overflow-hidden rounded-3xl border border-amber-500/30 bg-zinc-950/80 shadow-xl shadow-amber-950/20 lg:grid lg:grid-cols-2">
-          <figure className="relative bg-black">
-            <video
-              className="aspect-[9/16] max-h-[640px] w-full object-cover lg:max-h-none lg:min-h-full"
-              controls
-              playsInline
-              preload="metadata"
-              poster={jumper.poster}
-            >
-              <source src={jumper.videoSrc} type="video/mp4" />
-            </video>
-          </figure>
-
-          <div className="flex flex-col justify-center p-6 sm:p-10">
+          <div className="flex flex-col justify-center p-6 sm:p-10 lg:order-1">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-500">
               {jumper.headline}
             </p>
@@ -62,6 +51,33 @@ export function StarJumpersSection() {
               Know a rider leveling up? Book a session and keep stacking progress—we pick a new
               Star Jumper every month.
             </p>
+          </div>
+
+          <div className="flex flex-col bg-black lg:order-2">
+            <figure className="relative aspect-[9/16] w-full max-h-[520px] sm:max-h-[560px] lg:max-h-none lg:flex-1">
+              <Image
+                src={jumper.imageSrc}
+                alt={jumper.imageAlt}
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+            </figure>
+            <figure className="border-t border-white/10">
+              <video
+                className="aspect-[9/16] w-full max-h-[480px] object-cover lg:max-h-[520px]"
+                controls
+                playsInline
+                preload="metadata"
+                poster={jumper.poster}
+              >
+                <source src={jumper.videoSrc} type="video/mp4" />
+              </video>
+              <figcaption className="px-4 py-2 text-center text-xs text-zinc-500">
+                Session clip — {jumper.name}
+              </figcaption>
+            </figure>
           </div>
         </article>
       </div>

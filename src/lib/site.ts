@@ -120,6 +120,8 @@ export const eventTypes = [
 export type StarJumper = {
   name: string;
   monthLabel: string;
+  imageSrc: string;
+  imageAlt: string;
   videoSrc: string;
   poster?: string;
   headline: string;
@@ -127,12 +129,14 @@ export type StarJumper = {
   achievement?: string;
 };
 
-/** Update monthly — featured rider video lives in /public/media/ */
+/** Update monthly — featured rider media lives in /public/media/ */
 export const currentStarJumper: StarJumper = {
   name: "Logan Bowes",
   monthLabel: "August 2026",
+  imageSrc: "/media/logan-bowes-star-jumper.png",
+  imageAlt: "Logan Bowes mid-jump on his BMX bike over the air bag ramp",
   videoSrc: "/media/logan-bowes-star-jumper.mp4",
-  poster: "/media/youth-jump.jpg",
+  poster: "/media/logan-bowes-star-jumper.png",
   headline: "Star Jumper of the Month",
   progress:
     "Logan has been putting in work on the ramp—building confidence, dialing in his technique, and sending it higher every session. His progress on the bike shows what consistent reps and courage look like.",
