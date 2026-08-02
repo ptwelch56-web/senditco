@@ -87,7 +87,7 @@ export function MobileActionBar() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#0a0a0c]/95 backdrop-blur-md md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#0a0a0c]/95 backdrop-blur-md md:hidden print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       aria-label="Mobile quick navigation"
     >

@@ -1,8 +1,23 @@
-import { site } from "./site";
+const DEFAULT_HOME = "https://senditandsons.com";
 
-/** Live site URL for QR codes and share links */
-export const publicSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://senditandsons.com";
+/** Homepage origin only — use for QR codes (no /sign-pay or other paths). */
+function normalizeSiteHome(raw?: string) {
+  if (!raw?.trim()) return DEFAULT_HOME;
+  try {
+    const withProto = raw.startsWith("http") ? raw : `https://${raw}`;
+    const u = new URL(withProto);
+    return `${u.protocol}//${u.host}`;
+  } catch {
+    return DEFAULT_HOME;
+  }
+}
+
+/** Live site homepage URL for QR codes */
+export const publicSiteUrl = normalizeSiteHome(process.env.NEXT_PUBLIC_SITE_URL);
+
+export function siteHomeUrl() {
+  return publicSiteUrl;
+}
 
 export const spotCheckInPath = "/sign-pay";
 

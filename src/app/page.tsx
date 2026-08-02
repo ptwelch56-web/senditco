@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EventSignupSection } from "@/components/home/EventSignupSection";
 import { MediaGallery } from "@/components/home/MediaGallery";
+import { StarJumpersSection } from "@/components/home/StarJumpersSection";
 import {
   eventTypes,
   includes,
@@ -92,6 +93,8 @@ export default function HomePage() {
         </section>
 
         <MediaGallery />
+
+        <StarJumpersSection />
 
         <section id="how-it-works" className="scroll-mt-24 mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <h2 className="font-display text-3xl text-white sm:text-4xl">

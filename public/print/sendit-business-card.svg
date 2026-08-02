@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3.5in" height="2in" viewBox="0 0 1050 600">
+  <defs>
+    <linearGradient id="stripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1050" height="600" fill="#070708"/>
+  <rect width="1050" height="42" fill="url(#stripe)"/>
+  <ellipse cx="920" cy="80" rx="120" ry="80" fill="#dc2626" opacity="0.12"/>
+  <ellipse cx="120" cy="520" rx="140" ry="100" fill="#1d4ed8" opacity="0.1"/>
+  <text x="56" y="118" fill="#ffffff" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="72" letter-spacing="1">SEND IT</text>
+  <text x="56" y="168" fill="#ef4444" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="38" letter-spacing="2">AND SONS.CO</text>
+  <text x="56" y="218" fill="#a1a1aa" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" letter-spacing="3">MOBILE BMX &amp; MOUNTAIN BIKE JUMP LESSONS</text>
+  <text x="56" y="252" fill="#71717a" font-family="Arial, Helvetica, sans-serif" font-size="20">Ramp + air bag · Mebane, NC</text>
+  <text x="56" y="480" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">336-437-3825</text>
+  <text x="56" y="518" fill="#d4d4d8" font-family="Arial, Helvetica, sans-serif" font-size="22">starzndstripesmedia@gmail.com</text>
+  <text x="56" y="554" fill="#fbbf24" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">senditandsons.com</text>
+  <rect x="752" y="148" width="268" height="268" rx="12" fill="#ffffff"/>
+  <svg x="764" y="160" width="244" height="244" viewBox="0 0 27 27" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h27v27H0z"/><path stroke="#000000" d="M1 1.5h7m1 0h1m2 0h1m1 0h1m4 0h7M1 2.5h1m5 0h1m1 0h1m2 0h2m1 0h1m3 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m4 0h3m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m3 0h3m1 0h1m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m6 0h2m1 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h2m2 0h1m1 0h2M1 9.5h1m2 0h7m1 0h2m1 0h1m1 0h2m2 0h1m1 0h3M1 10.5h3m6 0h1m3 0h3m3 0h5M1 11.5h2m1 0h1m1 0h6m1 0h2m1 0h2m1 0h2m1 0h1m2 0h1M2 12.5h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h1m1 0h1m2 0h4M3 13.5h3m1 0h1m2 0h1m1 0h2m2 0h2m1 0h1m5 0h1M1 14.5h1m3 0h2m2 0h3m2 0h1m1 0h2m3 0h1m2 0h1M1 15.5h2m1 0h2m1 0h2m1 0h4m2 0h3m2 0h5M1 16.5h1m3 0h2m1 0h2m1 0h2m7 0h1m1 0h2m1 0h1M1 17.5h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h9m1 0h2M9 18.5h1m1 0h4m1 0h2m3 0h1m1 0h2M1 19.5h7m1 0h1m1 0h2m4 0h1m1 0h1m1 0h1m3 0h1M1 20.5h1m5 0h1m1 0h3m2 0h4m3 0h1m2 0h2M1 21.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h7M1 22.5h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h5m4 0h2M1 23.5h1m1 0h3m1 0h1m3 0h2m1 0h5m2 0h5M1 24.5h1m5 0h1m7 0h1m3 0h3m1 0h3M1 25.5h7m1 0h1m1 0h1m1 0h1m3 0h3m2 0h1m2 0h1"/></svg>
+  <text x="886" y="444" fill="#a1a1aa" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="2">SCAN TO</text>
+  <text x="886" y="466" fill="#a1a1aa" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="2">BOOK &amp; PAY</text>
+  <path d="M380 520 Q480 420 580 460 T720 440" stroke="#dc2626" stroke-width="6" fill="none" opacity="0.25" stroke-linecap="round"/>
+  <circle cx="580" cy="460" r="10" fill="#dc2626" opacity="0.25"/>
+</svg>

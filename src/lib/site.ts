@@ -116,6 +116,28 @@ export const eventTypes = [
   "Community events",
 ];
 
+export type StarJumper = {
+  name: string;
+  monthLabel: string;
+  videoSrc: string;
+  poster?: string;
+  headline: string;
+  progress: string;
+  achievement?: string;
+};
+
+/** Update monthly — featured rider video lives in /public/media/ */
+export const currentStarJumper: StarJumper = {
+  name: "Logan Bowes",
+  monthLabel: "August 2026",
+  videoSrc: "/media/logan-bowes-star-jumper.mp4",
+  poster: "/media/youth-jump.jpg",
+  headline: "Star Jumper of the Month",
+  progress:
+    "Logan has been putting in work on the ramp—building confidence, dialing in his technique, and sending it higher every session. His progress on the bike shows what consistent reps and courage look like.",
+  achievement: "First race win at Burlington BMX — Friday, July 31, 2026",
+};
+
 export const media = {
   heroVideo: "/media/jump-1.mp4",
   heroPoster: "/media/action-1.jpg",
@@ -129,6 +151,21 @@ export const media = {
       src: "/media/jump-2.mp4",
       poster: "/media/action-2.jpg",
       label: "Ramp to bag",
+    },
+    {
+      src: "/media/gallery-jump-3.mp4",
+      poster: "/media/action-1.jpg",
+      label: "Session highlight",
+    },
+    {
+      src: "/media/gallery-jump-4.mp4",
+      poster: "/media/youth-jump.jpg",
+      label: "Jump progression",
+    },
+    {
+      src: "/media/gallery-jump-5.mp4",
+      poster: "/media/evening-jump-line.jpg",
+      label: "On the air bag",
     },
   ],
   photos: [

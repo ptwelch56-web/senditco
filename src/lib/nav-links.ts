@@ -1,5 +1,6 @@
 export const sectionNavLinks = [
   { href: "/#gallery", label: "Gallery" },
+  { href: "/#star-jumpers", label: "Star Jumpers" },
   { href: "/#how-it-works", label: "How it works" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/#event-signup", label: "Event sign-up" },

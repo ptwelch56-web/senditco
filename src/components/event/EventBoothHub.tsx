@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { spotCheckInUrl } from "@/lib/event";
+import { siteHomeUrl } from "@/lib/event";
 import { spotSession } from "@/lib/site";
 import { paymentDisplay } from "@/lib/payments";
 import { SpotCheckInQr } from "@/components/onsite/SpotCheckInQr";
@@ -42,7 +42,9 @@ export function EventBoothHub() {
         </div>
       </div>
 
-      <p className="no-print mt-6 break-all text-center text-xs text-zinc-500">{spotCheckInUrl()}</p>
+      <p className="no-print mt-6 break-all text-center text-xs text-zinc-500">
+        QR → {siteHomeUrl()}
+      </p>
 
       <style jsx global>{`
         @media print {

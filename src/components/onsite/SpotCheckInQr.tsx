@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
-import { spotCheckInUrl } from "@/lib/event";
+import { siteHomeUrl } from "@/lib/event";
 import { spotSession } from "@/lib/site";
 
 type SpotCheckInQrProps = {
@@ -18,7 +17,7 @@ export function SpotCheckInQr({
   showUrl = true,
   className = "",
 }: SpotCheckInQrProps) {
-  const url = spotCheckInUrl();
+  const url = siteHomeUrl();
   const px = size === "lg" ? 200 : 160;
 
   return (

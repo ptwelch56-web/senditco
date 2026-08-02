@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run card:export && npm run flyer:export && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "card:export": "node scripts/generate-business-card.mjs",
+    "flyer:export": "node scripts/generate-flyer.mjs"
   },
   "dependencies": {
     "next": "16.2.11",
@@ -20,11 +22,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-signature-canvas": "^1.0.7",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
+    "pdf-lib": "^1.17.1",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
