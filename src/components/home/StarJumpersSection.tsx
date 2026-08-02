@@ -6,7 +6,7 @@ export function StarJumpersSection() {
   return (
     <section
       id="star-jumpers"
-      className="scroll-mt-24 border-b border-white/10 bg-gradient-to-b from-amber-950/20 to-black"
+      className="scroll-mt-24 border-b border-white/10 bg-gradient-to-b from-amber-950/20 to-black pt-6"
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">

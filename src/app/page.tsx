@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EventSignupSection } from "@/components/home/EventSignupSection";
 import { MediaGallery } from "@/components/home/MediaGallery";
+import { ReviewBanner } from "@/components/home/ReviewBanner";
 import { StarJumpersSection } from "@/components/home/StarJumpersSection";
 import {
   eventTypes,
@@ -21,6 +22,10 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <main>
+        <ReviewBanner />
+
+        <StarJumpersSection />
+
         <section className="relative overflow-hidden border-b border-white/10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(220,38,38,0.25),_transparent_50%),radial-gradient(ellipse_at_bottom_right,_rgba(37,99,235,0.15),_transparent_45%)]" />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-white to-blue-700" />
@@ -93,8 +98,6 @@ export default function HomePage() {
         </section>
 
         <MediaGallery />
-
-        <StarJumpersSection />
 
         <section id="how-it-works" className="scroll-mt-24 mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <h2 className="font-display text-3xl text-white sm:text-4xl">

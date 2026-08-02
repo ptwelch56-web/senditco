@@ -11,6 +11,7 @@ export const site = {
   email: "starzndstripesmedia@gmail.com",
   facebook:
     "https://www.facebook.com/share/v/192NoWUCU3/",
+  googleReviewUrl: "https://g.page/r/CaKDu2xqIkJfEAE/review",
 } as const;
 
 export type PackageId =
