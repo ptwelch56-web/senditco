@@ -5,6 +5,11 @@ import { useRouter } from "next/navigation";
 import { packages, site } from "@/lib/site";
 import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
 import { bookingSchema, detailsStepSchema, type BookingPayload } from "@/lib/booking-schema";
+import {
+  referralSourceLabels,
+  referralSourceValues,
+  type ReferralSource,
+} from "@/lib/referral-sources";
 import { SignatureField } from "./SignatureField";
 
 type Step = "package" | "details" | "waiver" | "review";
@@ -18,6 +23,7 @@ const steps: { id: Step; label: string }[] = [
 
 const initial: Partial<BookingPayload> & {
   acknowledgments: boolean[];
+  referralSource?: ReferralSource;
 } = {
   packageId: "private",
   preferredDate: "",
@@ -34,6 +40,7 @@ const initial: Partial<BookingPayload> & {
   needsHelmet: false,
   photoOptOut: false,
   notes: "",
+  referralSourceDetail: "",
   participantName: "",
   participantAge: 18,
   isMinor: false,
@@ -400,6 +407,40 @@ export function BookingWizard() {
               Need helmet(s)
             </label>
           </div>
+          <Field
+            label="How did you hear about us?"
+            error={errors.referralSource || errors.referralSourceDetail}
+            fieldKey="referralSource"
+          >
+            <select
+              className={inputClass}
+              value={form.referralSource ?? ""}
+              onChange={(e) =>
+                update("referralSource", e.target.value as ReferralSource)
+              }
+            >
+              <option value="">Select one…</option>
+              {referralSourceValues.map((value) => (
+                <option key={value} value={value}>
+                  {referralSourceLabels[value]}
+                </option>
+              ))}
+            </select>
+          </Field>
+          {form.referralSource === "other" ? (
+            <Field
+              label="Please specify"
+              error={errors.referralSourceDetail}
+              fieldKey="referralSourceDetail"
+            >
+              <input
+                className={inputClass}
+                placeholder="e.g. Burlington BMX track"
+                value={form.referralSourceDetail ?? ""}
+                onChange={(e) => update("referralSourceDetail", e.target.value)}
+              />
+            </Field>
+          ) : null}
           <Field label="Anything else? (optional)">
             <textarea
               className={inputClass}
@@ -514,6 +555,17 @@ export function BookingWizard() {
               label="Riders"
               value={`${form.riderCount} — ${form.riderDetails}`}
             />
+            {form.referralSource ? (
+              <Row
+                label="Heard about us"
+                value={
+                  referralSourceLabels[form.referralSource] +
+                  (form.referralSource === "other" && form.referralSourceDetail
+                    ? ` — ${form.referralSourceDetail}`
+                    : "")
+                }
+              />
+            ) : null}
             <Row label="Waiver signed by" value={form.participantName || ""} />
           </dl>
           <p className="text-xs text-zinc-500">

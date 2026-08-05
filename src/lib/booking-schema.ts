@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { referralSourceValues } from "./referral-sources";
 
 export const packageIdSchema = z.enum([
   "private",
@@ -31,6 +32,10 @@ export const bookingFieldsSchema = z.object({
   needsHelmet: z.boolean(),
   photoOptOut: z.boolean(),
   notes: z.string().optional(),
+  referralSource: z.enum(referralSourceValues, {
+    error: "Tell us how you heard about us",
+  }),
+  referralSourceDetail: z.string().optional(),
   participantName: z.string().min(2, "Enter participant legal name"),
   participantAge: z.coerce.number().int().min(8).max(99),
   isMinor: z.boolean(),
@@ -50,6 +55,8 @@ export const detailsStepSchema = bookingFieldsSchema.pick({
   contactEmail: true,
   riderCount: true,
   riderDetails: true,
+  referralSource: true,
+  referralSourceDetail: true,
 });
 
 export const bookingSchema = bookingFieldsSchema.superRefine((data, ctx) => {
@@ -65,6 +72,16 @@ export const bookingSchema = bookingFieldsSchema.superRefine((data, ctx) => {
       code: z.ZodIssueCode.custom,
       message: "All waiver checkboxes are required",
       path: ["acknowledgments"],
+    });
+  }
+  if (
+    data.referralSource === "other" &&
+    (!data.referralSourceDetail || data.referralSourceDetail.trim().length < 2)
+  ) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Please tell us how you heard about us",
+      path: ["referralSourceDetail"],
     });
   }
 });

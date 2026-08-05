@@ -28,15 +28,32 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Mobile BMX & MTB jump lessons`,
+    default: `${site.name} | BMX Jump Lessons Mebane NC & Triangle`,
     template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: site.seoDescription,
+  keywords: [...site.seoKeywords],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: site.name,
-    description: site.tagline,
+    title: `${site.name} | Mobile BMX Jump Lessons`,
+    description: site.seoDescription,
+    url: site.url,
+    siteName: site.name,
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | Mobile BMX Jump Lessons`,
+    description: site.seoDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

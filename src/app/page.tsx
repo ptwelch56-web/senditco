@@ -1,10 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EventSignupSection } from "@/components/home/EventSignupSection";
 import { MediaGallery } from "@/components/home/MediaGallery";
 import { ReviewBanner } from "@/components/home/ReviewBanner";
 import { StarJumpersSection } from "@/components/home/StarJumpersSection";
+import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import {
   eventTypes,
   includes,
@@ -15,11 +17,18 @@ import {
   spotSession,
 } from "@/lib/site";
 
+export const metadata: Metadata = {
+  title: "BMX Jump Lessons Mebane NC | Mobile Ramp & Air Bag",
+  description: site.seoDescription,
+  alternates: { canonical: "/" },
+};
+
 export default function HomePage() {
   const mailSubject = encodeURIComponent(`${site.name} booking request`);
 
   return (
     <>
+      <LocalBusinessJsonLd />
       <SiteHeader />
       <main>
         <ReviewBanner />
@@ -39,7 +48,9 @@ export default function HomePage() {
                 <span className="block text-red-500">Send it.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-300">
-                Mobile BMX & mountain bike jump lessons at your home or event.
+                Mobile BMX &amp; mountain bike jump lessons in{" "}
+                <strong className="text-white">{site.location}</strong> and the Triangle &amp;
+                Triad—we bring the portable ramp and air bag to your home, party, or event.
                 30 years of BMX experience—including racing, freestyle, and the{" "}
                 <strong className="text-white">2023 UCI BMX World Championships</strong>.
               </p>

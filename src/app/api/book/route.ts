@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { randomUUID } from "crypto";
 import { bookingSchema } from "@/lib/booking-schema";
+import { formatReferralSource } from "@/lib/referral-sources";
 import { packages, site } from "@/lib/site";
 import { waiverAcknowledgments, waiverEffectiveDate, waiverSections } from "@/lib/waiver-text";
 import { resendErrorMessage } from "@/lib/resend-errors";
@@ -108,6 +109,7 @@ function buildEmailHtml(
       <p><strong>Contact:</strong> ${escapeHtml(data.contactName)} · ${escapeHtml(data.contactPhone)} · ${escapeHtml(data.contactEmail)}</p>
       <p><strong>Riders (${data.riderCount}):</strong><br/>${escapeHtml(data.riderDetails).replace(/\n/g, "<br/>")}</p>
       <p><strong>Equipment:</strong> Bikes ${data.needsBike ? "yes" : "no"} · Helmets ${data.needsHelmet ? "yes" : "no"}</p>
+      <p><strong>How they heard about us:</strong> ${escapeHtml(formatReferralSource(data.referralSource, data.referralSourceDetail))}</p>
       ${data.notes ? `<p><strong>Notes:</strong> ${escapeHtml(data.notes)}</p>` : ""}
       <hr/>
       <h2 style="font-size:16px;">Waiver (effective ${escapeHtml(waiverEffectiveDate)})</h2>

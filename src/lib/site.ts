@@ -1,9 +1,23 @@
 export const site = {
   name: "sendit and sons.co",
-  domain: "senditandsons.co",
+  domain: "senditandsons.com",
+  url: "https://senditandsons.com",
   tagline: "Mobile BMX & mountain bike jump lessons",
   description:
     "We bring the ramp and air bag to you. Learn to jump safely with 30 years of BMX experience—including 2023 UCI BMX World Championships.",
+  seoDescription:
+    "Mobile BMX & mountain bike jump lessons in Mebane, NC. Portable ramp and air bag for driveways, birthday parties, schools, and events across the Triangle & Triad. Book online.",
+  seoKeywords: [
+    "BMX jump lessons",
+    "mobile BMX ramp",
+    "air bag BMX",
+    "mountain bike jump lessons",
+    "BMX birthday party",
+    "Mebane NC",
+    "Triangle NC",
+    "Triad NC",
+    "BMX lessons near me",
+  ],
   location: "Mebane, NC",
   serviceArea: "Mebane and the surrounding Triangle & Triad area",
   phone: "336-437-3825",
