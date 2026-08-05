@@ -23,8 +23,7 @@ export const site = {
   phone: "336-437-3825",
   phoneHref: "tel:+13364373825",
   email: "starzndstripesmedia@gmail.com",
-  facebook:
-    "https://www.facebook.com/share/v/192NoWUCU3/",
+  facebook: "https://www.facebook.com/profile.php?id=61592665720320",
   googleReviewUrl: "https://g.page/r/CaKDu2xqIkJfEAE/review",
 } as const;
 

@@ -61,7 +61,7 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="mt-3 inline-block text-sm text-zinc-300 hover:text-white"
           >
-            Facebook — Stars and Stripes Media
+            Facebook
           </a>
         </div>
       </div>
