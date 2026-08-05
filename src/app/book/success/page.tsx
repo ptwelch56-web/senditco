@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MetaPixelLead } from "@/components/analytics/MetaPixelLead";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/lib/site";
@@ -12,6 +13,7 @@ export default async function BookSuccessPage({ searchParams }: Props) {
 
   return (
     <>
+      <MetaPixelLead />
       <SiteHeader />
       <main className="mx-auto max-w-lg px-4 py-20 text-center sm:px-6">
         <p className="text-sm font-semibold uppercase tracking-widest text-red-500">
