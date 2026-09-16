@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { AboutCoachSection } from "@/components/home/AboutCoachSection";
 import { EventSignupSection } from "@/components/home/EventSignupSection";
 import { MediaGallery } from "@/components/home/MediaGallery";
 import { ReviewBanner } from "@/components/home/ReviewBanner";
@@ -35,6 +36,8 @@ export default function HomePage() {
 
         <StarJumpersSection />
 
+        <AboutCoachSection />
+
         <section className="relative overflow-hidden border-b border-white/10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(220,38,38,0.25),_transparent_50%),radial-gradient(ellipse_at_bottom_right,_rgba(37,99,235,0.15),_transparent_45%)]" />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-white to-blue-700" />
@@ -51,8 +54,9 @@ export default function HomePage() {
                 Mobile BMX &amp; mountain bike jump lessons in{" "}
                 <strong className="text-white">{site.location}</strong> and the Triangle &amp;
                 Triad—we bring the portable ramp and air bag to your home, party, or event.
-                30 years of BMX experience—including racing, freestyle, and the{" "}
-                <strong className="text-white">2023 UCI BMX World Championships</strong>.
+                Coach Tay Welch has been racing BMX for 30 years, including the{" "}
+                <strong className="text-white">2023 UCI BMX World Championships</strong>. Kids
+                and adults welcome.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link

@@ -68,6 +68,7 @@ export function StarJumpersSection() {
               <video
                 className="aspect-[9/16] w-full max-h-[480px] object-cover lg:max-h-[520px]"
                 controls
+                muted
                 playsInline
                 preload="metadata"
                 poster={jumper.poster}

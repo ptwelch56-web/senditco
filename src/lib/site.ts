@@ -27,6 +27,19 @@ export const site = {
   googleReviewUrl: "https://g.page/r/CaKDu2xqIkJfEAE/review",
 } as const;
 
+export const coach = {
+  name: "Tay Welch",
+  role: "Owner, coach, and dad of three",
+  bio: "I've been racing BMX for 30 years—including freestyle and the 2023 UCI BMX World Championships. I'm a dad of three, and sendit and sons.co is built around helping people of every age progress on a bike in a controlled environment.",
+  why: "I've seen a lot of people get hurt and never pursue their passion. That's why we bring a portable ramp and professional air bag to you: so first-timers and experienced riders can learn to jump safely, build confidence, and actually keep riding.",
+  highlights: [
+    "30 years racing BMX",
+    "Dad of three",
+    "Kids (8+) and adults welcome",
+    "Ramp + air bag at your place",
+  ],
+} as const;
+
 export type PackageId =
   | "private"
   | "two-riders"
@@ -144,16 +157,16 @@ export type StarJumper = {
 
 /** Update monthly — featured rider media lives in /public/media/ */
 export const currentStarJumper: StarJumper = {
-  name: "Logan Bowes",
-  monthLabel: "August 2026",
-  imageSrc: "/media/logan-bowes-star-jumper.png",
-  imageAlt: "Logan Bowes mid-jump on his BMX bike over the air bag ramp",
-  videoSrc: "/media/logan-bowes-star-jumper.mp4",
-  poster: "/media/logan-bowes-star-jumper.png",
+  name: "Kyle Mcpeak",
+  monthLabel: "September 2026",
+  imageSrc: "/media/kyle-mcpeak-star-jumper.jpg",
+  imageAlt: "Kyle Mcpeak landing on the Ninja air bag after his first jumps",
+  videoSrc: "/media/kyle-mcpeak-star-jumper.mp4",
+  poster: "/media/kyle-mcpeak-star-jumper-poster.jpg",
   headline: "Star Jumper of the Month",
   progress:
-    "Logan has been putting in work on the ramp—building confidence, dialing in his technique, and sending it higher every session. His progress on the bike shows what consistent reps and courage look like.",
-  achievement: "First race win at Burlington BMX — Friday, July 31, 2026",
+    "Kyle came in with no known experience on a bike. In about 30 minutes we had him jumping the ramp and landing on the air bag—proof that a controlled setup and patient coaching can unlock progress fast, at any age.",
+  achievement: "First jumps in 30 minutes — no prior bike experience",
 };
 
 export const media = {
@@ -185,8 +198,42 @@ export const media = {
       poster: "/media/evening-jump-line.jpg",
       label: "On the air bag",
     },
+    {
+      src: "/media/kyle-mcpeak-star-jumper.mp4",
+      poster: "/media/kyle-mcpeak-star-jumper-poster.jpg",
+      label: "Kyle Mcpeak — first jumps",
+    },
+    {
+      src: "/media/gallery-jump-6.mp4",
+      poster: "/media/youth-first-jumps.jpg",
+      label: "Youth session — ramp to bag",
+    },
   ],
   photos: [
+    {
+      src: "/media/kyle-mcpeak-star-jumper.jpg",
+      alt: "Kyle Mcpeak landing on the air bag during his first session",
+    },
+    {
+      src: "/media/youth-first-jumps.jpg",
+      alt: "Young rider jumping onto the Ninja air bag",
+    },
+    {
+      src: "/media/dusk-airbag-jump.jpg",
+      alt: "Youth rider catching air onto the portable air bag at dusk",
+    },
+    {
+      src: "/media/dusk-ramp-jump.jpg",
+      alt: "Rider launching from the portable ramp onto the air bag",
+    },
+    {
+      src: "/media/dusk-session.jpg",
+      alt: "Evening jump session with ramp, air bag, and coaching",
+    },
+    {
+      src: "/media/session-setup.jpg",
+      alt: "Mobile BMX setup: portable ramp, Ninja air bag, and coach RV",
+    },
     {
       src: "/media/action-1.jpg",
       alt: "Rider jumping onto the portable air bag landing",

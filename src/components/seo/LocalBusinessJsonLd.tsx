@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { coach, site } from "@/lib/site";
 
 export function LocalBusinessJsonLd() {
   const jsonLd = {
@@ -9,6 +9,12 @@ export function LocalBusinessJsonLd() {
     url: site.url,
     telephone: site.phone,
     email: site.email,
+    founder: {
+      "@type": "Person",
+      name: coach.name,
+      jobTitle: coach.role,
+      description: coach.bio,
+    },
     areaServed: [
       { "@type": "City", name: "Mebane", addressRegion: "NC" },
       { "@type": "AdministrativeArea", name: "Research Triangle" },

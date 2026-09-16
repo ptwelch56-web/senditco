@@ -23,6 +23,7 @@ export function MediaGallery() {
               <video
                 className="aspect-[9/16] max-h-[520px] w-full bg-black object-cover sm:aspect-video sm:max-h-none"
                 controls
+                muted
                 playsInline
                 preload="metadata"
                 poster={video.poster}
